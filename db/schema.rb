@@ -26,10 +26,10 @@ ActiveRecord::Schema.define(version: 20200106103920) do
     t.string "description"
     t.string "location"
     t.datetime "when"
-    t.integer "course_id_id"
+    t.integer "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["course_id_id"], name: "index_sessions_on_course_id_id"
+    t.index ["course_id"], name: "index_sessions_on_course_id"
   end
 
 end

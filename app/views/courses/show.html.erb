@@ -1,3 +1,4 @@
+<h1>Course details</h1>
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -27,3 +28,20 @@
 
 <%= link_to 'Edit', edit_course_path(@course) %> |
 <%= link_to 'Back', courses_path %>
+
+<h1>Sessions</h1>
+<table>
+  <tr>
+    <th>When</th>
+    <th>Location</th>
+    <th>Description</th>
+  </tr>
+<% @course.sessions.each do |session| %>
+    <tr>
+      <td><%= session.when %></td>
+      <td><%= session.location %></td>
+      <td><%= session.description %></td>
+    </tr>
+<% end %>
+</table>
+  <%= link_to 'Add new session', new_course_session_path(@course) %>

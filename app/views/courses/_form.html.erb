@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :ctype %>
-    <%= form.number_field :ctype, id: :course_ctype %>
+    <%= form.select :ctype, options_for_select([:lecture, :practice, :lab, :seminar], course.ctype), id: :course_ctype %>
   </div>
 
   <div class="field">

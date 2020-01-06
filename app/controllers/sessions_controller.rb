@@ -1,34 +1,34 @@
 class SessionsController < ApplicationController
   before_action :set_session, only: [:show, :edit, :update, :destroy]
-
-  # GET /sessions
-  # GET /sessions.json
+  before_action :set_course,  only: [:new, :create]
+  # GET /courses/:id/sessions
+  # GET /courses/:id/sessions.json
   def index
     @sessions = Session.all
   end
 
-  # GET /sessions/1
-  # GET /sessions/1.json
+  # GET /courses/:id/sessions/1
+  # GET /courses/:id/sessions/1.json
   def show
   end
 
-  # GET /sessions/new
+  # GET /courses/:id/sessions/new
   def new
-    @session = Session.new
+    @session = @course.sessions.new
   end
 
-  # GET /sessions/1/edit
+  # GET /courses/:id/sessions/1/edit
   def edit
   end
 
-  # POST /sessions
-  # POST /sessions.json
+  # POST /courses/:id/sessions
+  # POST /courses/:id/sessions.json
   def create
     @session = Session.new(session_params)
 
     respond_to do |format|
       if @session.save
-        format.html { redirect_to @session, notice: 'Session was successfully created.' }
+        format.html { redirect_to @course, notice: 'Session was successfully created.' }
         format.json { render :show, status: :created, location: @session }
       else
         format.html { render :new }
@@ -37,8 +37,8 @@ class SessionsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /sessions/1
-  # PATCH/PUT /sessions/1.json
+  # PATCH/PUT /courses/:id/sessions/1
+  # PATCH/PUT /courses/:id/sessions/1.json
   def update
     respond_to do |format|
       if @session.update(session_params)
@@ -51,8 +51,8 @@ class SessionsController < ApplicationController
     end
   end
 
-  # DELETE /sessions/1
-  # DELETE /sessions/1.json
+  # DELETE /courses/:id/sessions/1
+  # DELETE /courses/:id/sessions/1.json
   def destroy
     @session.destroy
     respond_to do |format|
@@ -67,8 +67,12 @@ class SessionsController < ApplicationController
       @session = Session.find(params[:id])
     end
 
+    def set_course
+      @course = Course.find(params[:course_id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def session_params
-      params.require(:session).permit(:description, :location, :when, :course_id_id)
+      params.require(:session).permit(:description, :location, :when, :course_id)
     end
 end

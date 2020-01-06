@@ -1,5 +1,5 @@
 class Session < ApplicationRecord
-  belongs_to :course_id
+  belongs_to :course
 
-  validates :course_id, :when, presence: true
+  validates :when, presence: true
 end
