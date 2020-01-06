@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200106102207) do
+ActiveRecord::Schema.define(version: 20200106103920) do
 
   create_table "courses", force: :cascade do |t|
     t.string "name"
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(version: 20200106102207) do
     t.integer "limit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "sessions", force: :cascade do |t|
+    t.string "description"
+    t.string "location"
+    t.datetime "when"
+    t.integer "course_id_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id_id"], name: "index_sessions_on_course_id_id"
   end
 
 end
