@@ -27,7 +27,7 @@ class CoursesController < ApplicationController
     @courses = @signups.map(&:course_id).sort
     render json: @courses
   end
- 
+
   # GET /courses
   # GET /courses.json
   def index
