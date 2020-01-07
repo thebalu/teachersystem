@@ -67,6 +67,13 @@ You can get a list of ``course_id``s of a given student using a GET request.
 where *snum* is the student number. The response is a (possibly empty) list of numbers, with a status
 code ``200 OK``.
 
+## Check if a teacher id is valid
+Given a teacher id, check if a teacher with such an id really exists. If it does, return their basic info. If not, respond
+with `{not_found: "Teacher with given number not found."}`.
+
+``GET /check_teacher?api_key=asd&tnum=123456``
+
+
 # Notes
 
 * If your Subsystem requires access to any other information, please contact me, and I'll add an endpoint.

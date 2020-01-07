@@ -1,0 +1,18 @@
+<h1>Profile</h1>
+
+<table>
+  <tr>
+    <td>Name</td>
+    <td><%= "#{current_teacher.first} #{current_teacher.last} " %></td>
+  </tr>
+  <tr>
+    <td>Email</td>
+    <td><%= current_teacher.email %></td>
+  </tr>
+  <tr>
+    <td>Office</td>
+    <td><%= current_teacher.office %></td>
+  </tr>
+</table>
+
+<p><%= link_to 'Edit info', edit_teacher_path %></p>

@@ -1,0 +1,36 @@
+<%= teacher %>
+<%= form_for teacher, url:'/teachers' do |form| %>
+  <% if teacher.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(teacher.errors.count, "error") %> prohibited this course from being saved:</h2>
+
+      <ul>
+        <% teacher.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :first %>
+    <%= form.text_field :first, id: :teacher_first %>
+  </div>
+  <div class="field">
+    <%= form.label :last %>
+    <%= form.text_field :last, id: :teacher_last %>
+  </div>
+  <div class="field">
+    <%= form.label :office %>
+    <%= form.text_field :office, id: :teacher_office %>
+  </div>
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.email_field :email, id: :teacher_email %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
