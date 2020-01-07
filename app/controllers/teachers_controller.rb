@@ -1,8 +1,19 @@
 class TeachersController < ApplicationController
 
-  before_action :authenticate_teacher!, only: [:show, :edit, :update]
+  before_action :authenticate_teacher!, only: [ :edit, :update, :profile]
+
+
+  def index
+    @teachers = Teacher.all
+  end
 
   def show
+    @teacher = Teacher.find(params[:id])
+  end
+
+  def profile
+    @teacher = current_teacher
+    render 'show'
   end
 
   def edit
@@ -14,7 +25,7 @@ class TeachersController < ApplicationController
     @teacher = current_teacher
     respond_to do |format|
       if @teacher.update(teacher_params)
-        format.html { redirect_to show_teacher_path, notice: 'Info was successfully updated.' }
+        format.html { redirect_to profile_path, notice: 'Info was successfully updated.' }
         format.json { render :show, status: :ok, location: @teacher }
       else
         format.html { render :edit }

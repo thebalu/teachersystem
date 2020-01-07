@@ -1,0 +1,26 @@
+<h1>Teachers</h1>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Office</th>
+    <th>Profile</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @teachers.each do |teacher| %>
+    <tr>
+      <td><%= "#{teacher.first} #{teacher.last}" %></td>
+      <td><%= teacher.email %></td>
+      <td><%= teacher.office %></td>
+      <td><%= link_to 'View', show_teacher_path(teacher)%></td>
+
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>

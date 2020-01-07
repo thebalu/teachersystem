@@ -3,16 +3,23 @@
 <table class="table">
   <tr>
     <td>Name</td>
-    <td><%= "#{current_teacher.first} #{current_teacher.last} " %></td>
+    <td><%= "#{@teacher.first} #{@teacher.last} " %></td>
   </tr>
+  <% if teacher_signed_in? && @teacher == current_teacher %>
+  <tr>
+    <td>Teacher ID number</td>
+    <td><%= @teacher.tnum %></td>
+  </tr>
+    <%end %>
   <tr>
     <td>Email</td>
-    <td><%= current_teacher.email %></td>
+    <td><%= @teacher.email %></td>
   </tr>
   <tr>
     <td>Office</td>
-    <td><%= current_teacher.office %></td>
+    <td><%= @teacher.office %></td>
   </tr>
 </table>
-
+<% if teacher_signed_in? && @teacher == current_teacher %>
 <p><%= link_to 'Edit info', edit_teacher_path %></p>
+<%end %>

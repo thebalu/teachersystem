@@ -10,16 +10,17 @@
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="collapse navbar-collapse order-1 mr-auto" >
+  <div class="navbar-collapse" >
     <a class="navbar-brand">Teacher System</a>
     <div class="navbar-nav mr-auto">
       <% if teacher_signed_in? %>
         <%= link_to 'My courses', courses_path, class: "nav-item nav-link" %>
-        <%= link_to 'Profile', show_teacher_path, class: "nav-item nav-link" %>
+        <%= link_to 'Profile', profile_path, class: "nav-item nav-link" %>
 
 
       <% else %>
         <%= link_to 'Browse courses', courses_path, class: "nav-item nav-link" %>
+        <%= link_to 'List of teachers', teachers_path, class: "nav-item nav-link" %>
       <% end %>
     </div>
     <div class="navbar-nav">
