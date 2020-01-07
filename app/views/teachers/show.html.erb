@@ -6,11 +6,11 @@
     <td><%= "#{@teacher.first} #{@teacher.last} " %></td>
   </tr>
   <% if teacher_signed_in? && @teacher == current_teacher %>
-  <tr>
-    <td>Teacher ID number</td>
-    <td><%= @teacher.tnum %></td>
-  </tr>
-    <%end %>
+    <tr>
+      <td>Teacher ID number</td>
+      <td><%= @teacher.tnum %></td>
+    </tr>
+  <% end %>
   <tr>
     <td>Email</td>
     <td><%= @teacher.email %></td>
@@ -21,5 +21,21 @@
   </tr>
 </table>
 <% if teacher_signed_in? && @teacher == current_teacher %>
-<p><%= link_to 'Edit info', edit_teacher_path %></p>
-<%end %>
+  <p><%= link_to 'Edit info', edit_teacher_path %></p>
+<% end %>
+
+<h2>Courses taught</h2>
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>ECTS</th>
+  </tr>
+  <% @teacher.courses.each do |c| %>
+    <tr>
+      <td><%= link_to "#{c.name}", course_path(c) %></td>
+      <td><%= c.ctype %></td>
+      <td><%= c.ects %></td>
+    </tr>
+  <% end %>
+</table>
