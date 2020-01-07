@@ -44,6 +44,9 @@ group :development, :test do
 end
 
 gem 'awesome_print'
+gem 'bootstrap', '~> 4.0.0'
+gem 'jquery-rails'
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'

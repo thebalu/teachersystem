@@ -9,20 +9,33 @@
 </head>
 
 <body>
-<div class="navbar">
-  <% if teacher_signed_in? %>
-    <%= link_to 'My courses', courses_path %> |
-    <%= link_to 'Profile', show_teacher_path %> |
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="collapse navbar-collapse order-1 mr-auto" >
+    <a class="navbar-brand">Teacher System</a>
+    <div class="navbar-nav mr-auto">
+      <% if teacher_signed_in? %>
+        <%= link_to 'My courses', courses_path, class: "nav-item nav-link" %>
+        <%= link_to 'Profile', show_teacher_path, class: "nav-item nav-link" %>
 
-    Signed in as <%= current_teacher.email %>. <%= link_to 'Sign out', destroy_teacher_session_path, method: :delete %>
-  <% else %>
-    <%= link_to 'Browse courses', courses_path %> |
 
-    Visiting as a guest.
-  <% end %>
-</div>
+      <% else %>
+        <%= link_to 'Browse courses', courses_path, class: "nav-item nav-link" %>
+      <% end %>
+    </div>
+    <div class="navbar-nav">
+      <% if teacher_signed_in? %>
+        <span class="navbar-text">Signed in as <%= current_teacher.email %>. </span><%= link_to 'Sign out', destroy_teacher_session_path, method: :delete, class: "nav-item nav-link" %>
+      <% else %>
+        <span class="navbar-text">Visiting as a guest.</span> <%= link_to 'Teacher login', teacher_session_path, class: "nav-item nav-link" %>
+      <% end %>
+    </div>
+  </div>
+<!--  <div class="collapse navbar-collapse order-2">-->
 
-<div class="content">
+<!--  </div>-->
+</nav>
+
+<div class="container">
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
   <%= yield %>

@@ -11,32 +11,32 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :name %>
-    <%= form.text_field :name, id: :course_name %>
+    <%= form.text_field :name, id: :course_name, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :ctype %>
-    <%= form.select :ctype, options_for_select([:lecture, :practice, :lab, :seminar], course.ctype), id: :course_ctype %>
+    <%= form.select :ctype, options_for_select([:lecture, :practice, :lab, :seminar], course.ctype), {id: :course_ctype},{class: "form-control"} %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :description %>
-    <%= form.text_area :description, id: :course_description %>
+    <%= form.text_area :description, id: :course_description, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :ects %>
-    <%= form.text_field :ects, id: :course_ects %>
+    <%= form.text_field :ects, id: :course_ects, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :limit %>
-    <%= form.number_field :limit, id: :course_limit %>
+    <%= form.number_field :limit, id: :course_limit, class: "form-control" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions form-group">
+    <%= form.submit(class:"btn btn-primary") %>
   </div>
 <% end %>

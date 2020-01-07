@@ -4,34 +4,38 @@
       <h2><%= pluralize(session.errors.count, "error") %> prohibited this session from being saved:</h2>
 
       <ul>
-      <% session.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% session.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :description %>
-    <%= form.text_field :description, id: :session_description %>
+    <%= form.text_field :description, id: :session_description, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :location %>
-    <%= form.text_field :location, id: :session_location %>
+    <%= form.text_field :location, id: :session_location, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :when %>
-    <%= form.datetime_select :when, id: :session_when %>
+    <div class="field form-row">
+      <!--    <div class="col">-->
+      <%= form.datetime_select :when, {id: :session_when}, {class: "form-control w-25 col"} %>
+      <!--    </div>-->
+    </div>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :course_id %>
-    <%= form.text_field :course_id, id: :session_course_id %>
+    <%= form.text_field :course_id, id: :session_course_id, class: "form-control" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions form-group">
+    <%= form.submit(class: "btn btn-primary") %>
   </div>
 <% end %>

@@ -1,4 +1,3 @@
-<%= teacher %>
 <%= form_for teacher, url:'/teachers' do |form| %>
   <% if teacher.errors.any? %>
     <div id="error_explanation">
@@ -12,25 +11,30 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :first %>
-    <%= form.text_field :first, id: :teacher_first %>
+  <div class="form-group">
+    <div class="form-row">
+      <div class="field col">
+        <%= form.label :first, 'First name' %>
+        <%= form.text_field :first, id: :teacher_first, class: "form-control" %>
+      </div>
+      <div class="field col">
+        <%= form.label :last, 'Last name' %>
+        <%= form.text_field :last, id: :teacher_last, class: "form-control" %>
+      </div>
+    </div>
   </div>
-  <div class="field">
-    <%= form.label :last %>
-    <%= form.text_field :last, id: :teacher_last %>
-  </div>
-  <div class="field">
+
+  <div class="field form-group">
     <%= form.label :office %>
-    <%= form.text_field :office, id: :teacher_office %>
+    <%= form.text_field :office, id: :teacher_office, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :email %>
-    <%= form.email_field :email, id: :teacher_email %>
+    <%= form.email_field :email, id: :teacher_email, class: "form-control" %>
   </div>
 
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions form-group">
+    <%= form.submit('Update', class: "btn btn-primary") %>
   </div>
 <% end %>
