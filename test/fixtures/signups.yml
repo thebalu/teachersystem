@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  snum: 1
+  first: MyString
+  last: MyString
+  course: one
+
+two:
+  snum: 1
+  first: MyString
+  last: MyString
+  course: two

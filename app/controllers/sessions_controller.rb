@@ -1,10 +1,10 @@
 class SessionsController < ApplicationController
   before_action :set_session, only: [:show, :edit, :update, :destroy]
-  before_action :set_course,  only: [:new, :create]
+  before_action :set_course,  only: [:new, :create, :index]
   # GET /courses/:id/sessions
   # GET /courses/:id/sessions.json
   def index
-    @sessions = Session.all
+    @sessions = @course.sessions.all
   end
 
   # GET /courses/:id/sessions/1

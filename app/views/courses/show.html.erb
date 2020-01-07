@@ -45,3 +45,19 @@
 <% end %>
 </table>
   <%= link_to 'Add new session', new_course_session_path(@course) %>
+
+<h1>Students</h1>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>First name</th>
+    <th>Last name</th>
+  </tr>
+  <% @course.signups.each do |signup| %>
+    <tr>
+      <td><%= signup.snum %></td>
+      <td><%= signup.first %></td>
+      <td><%= signup.last %></td>
+    </tr>
+  <% end %>
+</table>

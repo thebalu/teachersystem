@@ -1,6 +1,33 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token, only: [:signup, :drop]
 
+  # POST /courses/signup.json
+  def signup
+    @signup = Signup.new(signup_params)
+    #ap @signup
+    if @signup.save
+      render json: @signup, status: :created
+    else
+      render json: @signup.errors, status: :unprocessable_entity
+    end
+  end
+
+  # POST /courses/drop.json
+  def drop
+    @signup = Signup.find_by(snum: params['drop']['snum'], course_id: params['drop']['course_id'])
+    render json: {drop: "Not found"}, status: :unprocessable_entity and return unless @signup
+    @signup.destroy
+    render json: {drop: "Course dropped"}, status: :ok
+  end
+
+  # GET /student_signups?snum=...
+  def student_signups
+    @signups = Signup.where(snum: params['snum'])
+    @courses = @signups.map(&:course_id).sort
+    render json: @courses
+  end
+ 
   # GET /courses
   # GET /courses.json
   def index
@@ -62,13 +89,18 @@ class CoursesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_course
-      @course = Course.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def course_params
-      params.require(:course).permit(:name, :ctype, :description, :ects, :limit)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_course
+    @course = Course.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def course_params
+    params.require(:course).permit(:name, :ctype, :description, :ects, :limit)
+  end
+
+  def signup_params
+    params.require(:signup).permit(:snum, :course_id, :first, :last)
+  end
 end
