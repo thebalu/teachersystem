@@ -1,6 +1,7 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token, only: [:signup, :drop]
+  before_action :authenticate_teacher!, except: [:signup, :drop, :student_signups]
 
   # POST /courses/signup.json
   def signup

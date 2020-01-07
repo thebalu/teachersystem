@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  devise_for :teachers
+  root to: 'courses#index'
 
   resources :courses do
     resources :sessions
