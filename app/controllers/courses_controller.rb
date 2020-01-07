@@ -4,6 +4,8 @@ class CoursesController < ApplicationController
 
   # POST /courses/signup.json
   def signup
+    render json: {api_key: "Please provide an API key."}, status: :unauthorized and return unless params['api_key']
+    render json: {api_key: "Invalid API key."}, status: :unauthorized and return unless params['api_key'] == ENV['API_KEY']
     @signup = Signup.new(signup_params)
     #ap @signup
     if @signup.save
@@ -15,6 +17,8 @@ class CoursesController < ApplicationController
 
   # POST /courses/drop.json
   def drop
+    render json: {api_key: "Please provide an API key."}, status: :unauthorized and return unless params['api_key']
+    render json: {api_key: "Invalid API key."}, status: :unauthorized and return unless params['api_key'] == ENV['API_KEY']
     @signup = Signup.find_by(snum: params['drop']['snum'], course_id: params['drop']['course_id'])
     render json: {drop: "Not found"}, status: :unprocessable_entity and return unless @signup
     @signup.destroy
@@ -23,6 +27,8 @@ class CoursesController < ApplicationController
 
   # GET /student_signups?snum=...
   def student_signups
+    render json: {api_key: "Please provide an API key."}, status: :unauthorized and return unless params['api_key']
+    render json: {api_key: "Invalid API key."}, status: :unauthorized and return unless params['api_key'] == ENV['API_KEY']
     @signups = Signup.where(snum: params['snum'])
     @courses = @signups.map(&:course_id).sort
     render json: @courses
