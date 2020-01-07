@@ -30,10 +30,9 @@
     </div>
   </div>
 
-  <div class="field form-group">
-    <%= form.label :course_id %>
-    <%= form.text_field :course_id, id: :session_course_id, class: "form-control" %>
-  </div>
+
+    <%= form.hidden_field :course_id, id: :session_course_id %>
+
 
   <div class="actions form-group">
     <%= form.submit(class: "btn btn-primary") %>
