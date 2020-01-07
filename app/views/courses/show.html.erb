@@ -22,11 +22,13 @@
 </p>
 
 <p>
-  <strong>Limit:</strong>
-  <%= @course.limit %>
+  <strong>Signups/Limit:</strong>
+  <%= "#{@course.signups.count} / #{@course.limit}" %>
 </p>
 
+<% if teacher_signed_in? && @course.teacher == current_teacher %>
 <%= link_to 'Edit', edit_course_path(@course) %> |
+  <%end %>
 <%= link_to 'Back', courses_path %>
 
 <h1>Sessions</h1>
@@ -44,6 +46,7 @@
     </tr>
 <% end %>
 </table>
+<% if teacher_signed_in? && @course.teacher == current_teacher %>
   <%= link_to 'Add new session', new_course_session_path(@course) %>
 
 <h1>Students</h1>
@@ -61,3 +64,5 @@
     </tr>
   <% end %>
 </table>
+
+<% end %>

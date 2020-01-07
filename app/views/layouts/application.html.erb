@@ -11,9 +11,14 @@
 <body>
 <div class="navbar">
   <% if teacher_signed_in? %>
+    <%= link_to 'My courses', courses_path %> |
+    <%= link_to 'Profile', show_teacher_path %> |
+
     Signed in as <%= current_teacher.email %>. <%= link_to 'Sign out', destroy_teacher_session_path, method: :delete %>
   <% else %>
-    nop
+    <%= link_to 'Browse courses', courses_path %> |
+
+    Visiting as a guest.
   <% end %>
 </div>
 

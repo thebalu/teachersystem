@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token, only: [:signup, :drop]
-  before_action :authenticate_teacher!, except: [:signup, :drop, :student_signups]
+  before_action :authenticate_teacher!, except: [:signup, :drop, :student_signups, :index, :show]
 
   # POST /courses/signup.json
   def signup
@@ -38,13 +38,13 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @courses = current_teacher.courses.all
+    @courses =  teacher_signed_in? ? current_teacher.courses.all : Course.all
   end
 
   # GET /courses/1
   # GET /courses/1.json
   def show
-    redirect_to '/', alert: "Course belongs to different teacher." unless @course.teacher == current_teacher
+    #redirect_to '/', alert: "Course belongs to different teacher." unless @course.teacher == current_teacher
   end
 
   # GET /courses/new
