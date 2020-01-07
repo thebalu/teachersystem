@@ -68,8 +68,9 @@ where *snum* is the student number. The response is a (possibly empty) list of n
 code ``200 OK``.
 
 ## Check if a teacher id is valid
-Given a teacher id, check if a teacher with such an id really exists. If it does, return their basic info. If not, respond
-with `{not_found: "Teacher with given number not found."}`.
+Given a teacher id, check if a teacher with such an id really exists. If it does, return their basic info (and
+status code `302 Found`. If not, respond
+with `{not_found: "Teacher with given number not found."}`, and code `404 Not Found`.
 
 ``GET /check_teacher?api_key=asd&tnum=123456``
 
