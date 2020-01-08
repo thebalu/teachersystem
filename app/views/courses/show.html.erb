@@ -40,13 +40,15 @@
 <h1>Sessions</h1>
 <table class="table">
   <tr>
-    <th>When</th>
+    <th>Start</th>
+    <th>End</th>
     <th>Location</th>
     <th>Description</th>
   </tr>
 <% @course.sessions.each do |session| %>
     <tr>
       <td><%= session.when %></td>
+      <td><%= session.ends %></td>
       <td><%= session.location %></td>
       <td><%= session.description %></td>
     </tr>

@@ -74,6 +74,24 @@ with `{not_found: "Teacher with given number not found."}`, and code `404 Not Fo
 
 ``GET /check_teacher?api_key=asd&tnum=123456``
 
+## Log in teacher using JSON
+Check if an email address and password are correct. Send a request:
+
+``POST /teachers/login_teacher``
+
+with request body:
+
+```
+{
+    "api_key":"asd",
+    "email":"",
+    "password":""
+}
+```
+
+If the email/password combination is correct, returns the code `200 OK` and the teacher 
+object in the body. If incorrect, it returns `403 Forbidden` with an error message in the body. 
+
 
 # Notes
 

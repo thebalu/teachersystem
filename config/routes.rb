@@ -16,5 +16,7 @@ Rails.application.routes.draw do
   get 'profile/edit', to: 'teachers#edit', as:'edit_teacher'
   patch 'teachers', to:'teachers#update', as:'teacher'
   get 'check_teacher', to:'teachers#check_teacher'
+
+  post 'teachers/login_teacher',to:'teachers#login_teacher'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
