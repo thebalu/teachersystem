@@ -49,7 +49,7 @@ class TeachersController < ApplicationController
 
   def login_teacher
     render json: {api_key: "Please provide an API key."}, status: :unauthorized and return unless params['api_key']
-    render json: {api_key: "Invalid API key."}, status: :unauthorized and return unless params['api_key'] == 'asd'#ENV['API_KEY']
+    render json: {api_key: "Invalid API key."}, status: :unauthorized and return unless params['api_key'] == ENV['API_KEY']
     @teacher = Teacher.find_by_email(params[:email])
     render json: {error: "Incorrect email address."}, status: :forbidden and return unless @teacher
     if @teacher.valid_password?(params[:password])

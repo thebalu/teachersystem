@@ -33,9 +33,7 @@
   <div class="field form-group">
     <%= form.label :ends %>
     <div class="field form-row">
-      <!--    <div class="col">-->
       <%= form.datetime_select :ends, {id: :session_ends}, {class: "form-control w-25 col"} %>
-      <!--    </div>-->
     </div>
   </div>
     <%= form.hidden_field :course_id, id: :session_course_id %>
