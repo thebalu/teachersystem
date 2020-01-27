@@ -44,6 +44,7 @@
     <th>End</th>
     <th>Location</th>
     <th>Description</th>
+    <th>Delete</th>
   </tr>
   <% @course.sessions.each do |session| %>
     <tr>
@@ -51,6 +52,7 @@
       <td><%= session.ends %></td>
       <td><%= session.location %></td>
       <td><%= session.description %></td>
+      <td><%= button_to 'Remove', course_session_path(@course, session), method: :delete, class:'btn btn-danger' %></td>
     </tr>
   <% end %>
 </table>
@@ -67,6 +69,7 @@
       <th>ID</th>
       <th>First name</th>
       <th>Last name</th>
+      <th>Kick from course</th>
     </tr>
 
     <% @course.signups.each do |signup| %>
@@ -74,6 +77,7 @@
         <td><%= signup.snum %></td>
         <td><%= signup.first %></td>
         <td><%= signup.last %></td>
+        <td><%= button_to 'Remove', teacher_drop_path,params: {course_id: @course.id, snum: signup.snum}, class:'btn btn-danger' %></td>
       </tr>
 
     <% end %>

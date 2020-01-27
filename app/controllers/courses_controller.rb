@@ -27,6 +27,19 @@ class CoursesController < ApplicationController
     render json: {drop: "Course dropped"}, status: :ok
   end
 
+
+  def teacher_drop
+    @course = Course.find_by(id: params[:course_id])
+    ap @course
+    redirect_to '/', alert: "Course belongs to different teacher." and return unless @course.teacher == current_teacher
+
+    @signup = Signup.find_by(snum: params['snum'], course: @course)
+    redirect_to course_path(@course), alert: 'Error. Student not found on this course' and return unless @signup
+    @signup.destroy
+    redirect_to (@course), notice: "Successfully removed student."
+
+  end
+
   def id_signup
     @course = Course.find(params[:course_id])
     redirect_to '/', alert: "Course belongs to different teacher." unless @course.teacher == current_teacher

@@ -61,9 +61,11 @@ class SessionsController < ApplicationController
   # DELETE /courses/:id/sessions/1
   # DELETE /courses/:id/sessions/1.json
   def destroy
+    redirect_to '/', alert: 'Forbidden. Course belongs to a different teacher' and return unless @session.course.teacher == current_teacher
+    course = @session.course
     @session.destroy
     respond_to do |format|
-      format.html { redirect_to sessions_url, notice: 'Session was successfully destroyed.' }
+      format.html { redirect_to course, notice: 'Session was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

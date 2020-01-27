@@ -7,8 +7,9 @@ Rails.application.routes.draw do
     resources :sessions
   end
   post 'courses/signup', to: 'courses#signup', defaults: {format: 'json'}, as: 'signup'
-  post 'courses/id_signup', to:'courses#id_signup', defaults: {format: 'json'}, as:'id_signup'
+  post 'courses/id_signup', to:'courses#id_signup', as:'id_signup'
   post 'courses/drop',to: 'courses#drop', defaults: {format: 'json'}, as:'drop'
+  post 'courses/teacher_drop', to:'courses#teacher_drop', as:'teacher_drop'
   get  'student_signups', to: 'courses#student_signups', defaults: {format: 'json'}
 
   get 'teachers/:id', to: 'teachers#show', as: 'show_teacher'
