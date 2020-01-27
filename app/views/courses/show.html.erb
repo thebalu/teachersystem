@@ -33,8 +33,8 @@
 </table>
 
 <% if teacher_signed_in? && @course.teacher == current_teacher %>
-<%= link_to 'Edit', edit_course_path(@course) %> |
-  <%end %>
+  <%= link_to 'Edit', edit_course_path(@course) %> |
+<% end %>
 <%= link_to 'Back', courses_path %>
 
 <h1>Sessions</h1>
@@ -45,32 +45,52 @@
     <th>Location</th>
     <th>Description</th>
   </tr>
-<% @course.sessions.each do |session| %>
+  <% @course.sessions.each do |session| %>
     <tr>
       <td><%= session.when %></td>
       <td><%= session.ends %></td>
       <td><%= session.location %></td>
       <td><%= session.description %></td>
     </tr>
-<% end %>
+  <% end %>
 </table>
 <% if teacher_signed_in? && @course.teacher == current_teacher %>
   <%= link_to 'Add new session', new_course_session_path(@course) %>
 
-<h1>Students</h1>
-<table class="table">
-  <tr>
-    <th>ID</th>
-    <th>First name</th>
-    <th>Last name</th>
-  </tr>
-  <% @course.signups.each do |signup| %>
+  <h1>Students</h1>
+
+
+
+  <table class="table">
+
     <tr>
-      <td><%= signup.snum %></td>
-      <td><%= signup.first %></td>
-      <td><%= signup.last %></td>
+      <th>ID</th>
+      <th>First name</th>
+      <th>Last name</th>
     </tr>
+
+    <% @course.signups.each do |signup| %>
+      <tr>
+        <td><%= signup.snum %></td>
+        <td><%= signup.first %></td>
+        <td><%= signup.last %></td>
+      </tr>
+
+    <% end %>
+
+  </table>
+
+  <%= form_with url: id_signup_path do |form| %>
+    <div class="field form-group">
+      <%= form.label :student_id, 'Add student by ID' %>
+      <%= form.number_field :student_id, id: :student_id, class: "form-control w-25" %>
+    </div>
+    <%= form.submit(class: "btn btn-primary") %>
+
+    <%= form.hidden_field :course_id, value: @course.id %>
+
   <% end %>
-</table>
+
+
 
 <% end %>
