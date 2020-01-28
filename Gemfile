@@ -41,7 +41,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'sqlite3', '< 1.4'
   gem 'rspec-rails'
-
+  gem 'shoulda-matchers'
 end
 
 gem 'awesome_print'
