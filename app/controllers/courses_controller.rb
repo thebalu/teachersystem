@@ -44,16 +44,17 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:course_id])
     redirect_to '/', alert: "Course belongs to different teacher." unless @course.teacher == current_teacher
 
-    #puts 'Making a request to Jordans slow af server'
-    #response = HTTParty.get('http://uni.finchyy.co.uk/resources/api/user?userId=1', verify:false)
-    #puts 'Finally...'
-    #response.body.slice! 0..5
-    #parsed = JSON.parse response.body
+    puts 'Making a request to Jordans slow af server'
+    response = HTTParty.get("http://uni.finchyy.co.uk/resources/api/user?userId=#{params[:student_id]}", verify:false)
+    puts 'Finally...'
 
-    mock = "{\"UserID\":\"1\",\"FirstName\":\"Jordan\",\"LastName\":\"Finchjhjhhj\",\"Email\":\"jordan.e.finch@gmail.com\",\"PhoneNumber\":\"+447492867569\",\"SessionID\":\"8f88ea3fae09ebd6a196c21c7a233c48\",\"StudentID\":\"1\",\"Degree\":\"BSc. Computer Science\",\"Address\":\"Julius-Raab-Strasse 1-3\",\"TeacherID\":null,\"Office\":null,\"Bills\":[{\"UserID\":\"1\",\"BillID\":\"1\"},{\"UserID\":\"1\",\"BillID\":\"2\"}],\"Loans\":[{\"UserID\":\"1\",\"LoanID\":\"1\"},{\"UserID\":\"1\",\"LoanID\":\"3\"}]}"
-    parsed = JSON.parse mock
+    parsed = JSON.parse response.body
+
+    #mock = "{\"UserID\":\"1\",\"FirstName\":\"Jordan\",\"LastName\":\"Finchjhjhhj\",\"Email\":\"jordan.e.finch@gmail.com\",\"PhoneNumber\":\"+447492867569\",\"SessionID\":\"8f88ea3fae09ebd6a196c21c7a233c48\",\"StudentID\":\"1\",\"Degree\":\"BSc. Computer Science\",\"Address\":\"Julius-Raab-Strasse 1-3\",\"TeacherID\":null,\"Office\":null,\"Bills\":[{\"UserID\":\"1\",\"BillID\":\"1\"},{\"UserID\":\"1\",\"BillID\":\"2\"}],\"Loans\":[{\"UserID\":\"1\",\"LoanID\":\"1\"},{\"UserID\":\"1\",\"LoanID\":\"3\"}]}"
+    #parsed = JSON.parse mock
     ap parsed
 
+    redirect_to @course, alert: "Student with id: #{params[:student_id]} doesn't exist in Student Management System." and return unless parsed['UserID'] && parsed['UserID']==params[:student_id]
     @signup = Signup.new(course: @course, snum: params[:student_id], first: parsed['FirstName'], last: parsed['LastName'])
 
     if @signup.save
