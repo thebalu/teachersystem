@@ -92,7 +92,8 @@ with request body:
 If the email/password combination is correct, returns the code `200 OK` and the teacher 
 object in the body. If incorrect, it returns `403 Forbidden` with an error message in the body. 
 
-
+## Courses
+Courses can be accessed in JSON format on  `/courses.json` and `/courses/1.json` 
 # Notes
 
 * If your Subsystem requires access to any other information, please contact me, and I'll add an endpoint.
