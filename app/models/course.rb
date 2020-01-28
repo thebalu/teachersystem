@@ -9,4 +9,7 @@ class Course < ApplicationRecord
   validates :ects, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 30.0}
   validates :limit, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 300}
 
+  def signup_count
+    signups.count
+  end
 end
